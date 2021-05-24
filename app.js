@@ -18,6 +18,15 @@ const searchSongs = async () => {
 //     .catch(data => displayError('Something Went Wrong!! Please Try Again Later.'));
 //   };
 
+document.getElementById('search-field')
+.addEventListener('keypress', function(event){
+    // event.preventDefault();
+    // console.log(event.event.key);
+    if(event.key == 'Enter'){
+        document.getElementById('search-button').click();
+    } 
+})
+
 const displayError = error => {
     const errorTag = document.getElementById('error-message');
     errorTag.innerText = error;
