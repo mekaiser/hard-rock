@@ -1,6 +1,7 @@
 const searchSongs = async () => {
   const searchText = document.getElementById("search-field").value;
   const url = `https://api.lyrics.ovh/suggest/${searchText}`;
+  toggleSpinner();
   // Load Data
   const res = await fetch(url);
   const data = await res.json();
@@ -22,6 +23,20 @@ const displayError = error => {
     errorTag.innerText = error;
 }
 
+const toggleSpinner = () => {
+    const spinner = document.getElementById('loading-spinner');
+    const songs = document.getElementById('song-container');
+    // if(show){
+    //     spinner.classList.remove('d-none');
+    // }
+    // else{
+    //     spinner.classList.add('d-none');
+    // }
+    spinner.classList.toggle('d-none');
+    songs.classList.toggle('d-none');
+    
+}
+
 const displaySongs = (songs) => {
   const songContainer = document.getElementById("song-container");
   songContainer.innerHTML = '';
@@ -41,6 +56,7 @@ const displaySongs = (songs) => {
             </div>
         `;
     songContainer.appendChild(songDiv);
+    toggleSpinner();
   });
 };
 
